@@ -6,6 +6,10 @@ class Game extends Process {
 
 	public static var sav : GameSave = new GameSave();
 
+	public static function getRecipeData(id : String) {
+		return Data.recipes.get(cast(id, Data.RecipesKind));
+	}
+
 	/** Game controller (pad or keyboard) **/
 	public var ca : dn.heaps.Controller.ControllerAccess;
 
@@ -44,6 +48,8 @@ class Game extends Process {
 	var slowMos : Map<String, {id : String, t : Float, f : Float}> = new Map();
 
 	var flags : Map<String, Int> = new Map();
+
+	public var id(default, null) : String;
 
 	public var timerLen(default, set) : Float;
 	public function set_timerLen(t) {
@@ -105,15 +111,18 @@ class Game extends Process {
 		return f != null ? f : 0;
 	}
 
-	function startLevel() {
+	function startLevel(?id = 'recipe1') {
 		locked = false;
 		started = false;
 
 		scroller.removeChildren();
 
+		this.id = id;
+
 		level.init();
 
-		timerLen = 10;
+		var recipe = getRecipeData(this.id);
+		timerLen = recipe.timer;
 		tw.createS(timer, 0, TType.TLinear, timerLen);
 
 		resume();
@@ -134,7 +143,9 @@ class Game extends Process {
 	}
 
 	/** CDB file changed on disk**/
-	public function onCdbReload() {}
+	public function onCdbReload() {
+		startLevel();
+	}
 
 	/** Window/app resize event **/
 	override function onResize() {
