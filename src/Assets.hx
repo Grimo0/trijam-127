@@ -10,7 +10,7 @@ class Assets {
 	public static var placeholder : SpriteLib;
 	public static var ui : SpriteLib;
 	public static var fx : SpriteLib;
-	public static var entities : SpriteLib;
+	public static var game : SpriteLib;
 
 	static var initDone = false;
 
@@ -55,5 +55,6 @@ class Assets {
 		placeholder = dn.heaps.assets.Atlas.load("atlas/placeholders.atlas");
 		ui = dn.heaps.assets.Atlas.load("atlas/ui.atlas");
 		fx = dn.heaps.assets.Atlas.load("atlas/fx.atlas");
+		game = dn.heaps.assets.Atlas.load("atlas/game.atlas");
 	}
 }
