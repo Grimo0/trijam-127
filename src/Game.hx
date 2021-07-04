@@ -78,7 +78,6 @@ class Game extends Process {
 
 	public function save() {
 		sav.flags = flags.copy();
-		sav.levelUID = level.uniqId;
 
 		hxd.Save.save(sav, 'save/game');
 	}
@@ -94,38 +93,28 @@ class Game extends Process {
 		return f != null ? f : 0;
 	}
 
-	function startLevel(?levelUID : Int) {
+	function startLevel() {
 		locked = false;
 		started = false;
 
 		scroller.removeChildren();
 
-		level.currLevel = Assets.world.getLevel(levelUID != null ? levelUID : sav.levelUID);
+		level.init();
 
 		resume();
 		Process.resizeAll();
 	}
 
-	public function transition(levelUID : Null<Int>, event : String = null, ?onDone : Void->Void) {
+	public function transition(event : String = null, ?onDone : Void->Void) {
 		locked = true;
 
 		Main.ME.tw.createS(root.alpha, 0, #if debug 0 #else 1 #end).onEnd = function() {
-			if (levelUID == null) {
-				save();
-
-				Main.ME.startMainMenu();
-			} else {
-				var level = Assets.world.getLevel(levelUID);
-				flags.set(level.identifier, 1);
-				save();
-
-				startLevel(levelUID);
-
-				Main.ME.tw.createS(root.alpha, 1, #if debug 0 #else 1 #end);
-			}
-
 			if (onDone != null)
 				onDone();
+
+			startLevel();
+
+			Main.ME.tw.createS(root.alpha, 1, #if debug 0 #else 1 #end);
 		}
 	}
 
@@ -249,12 +238,6 @@ class Game extends Process {
 			Const.MAX_CELLS_PER_WIDTH = Std.int(natArray[0]);
 			scroller.setScale(Const.SCALE);
 		}
-
-		var scenes = Assets.world.levels;
-		ImGui.comboWithArrow('currScene', Assets.world.levels.indexOf(level.currLevel), scenes,
-			(i : Int) -> Assets.world.levels[i].identifier,
-			(i : Int) -> transition(Assets.world.levels[i].uid));
-		ImGui.separator();
 
 		ImGui.alignTextToFramePadding();
 		ImGui.text('Scroller');
