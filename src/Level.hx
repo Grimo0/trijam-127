@@ -36,5 +36,11 @@ class Level extends dn.Process {
 		root.removeChildren();
 		
 		// TODO Level loading & rendering
+
+		// TODO REMOVE
+		var ing = new Ingredient('Alga');
+		root.addChildAt(ing, Const.GAME_LEVEL_ENTITIES);
+		ing.x = 200;
+		ing.y = 500;
 	}
 }

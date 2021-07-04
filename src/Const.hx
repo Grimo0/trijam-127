@@ -77,8 +77,6 @@ class Const {
 	public static var GAME_SCROLLER_FX_FRONT = ++_inc;
 
 	public static var GAME_LEVEL_BG = _inc = 0;
-	public static var GAME_LEVEL_FLOOR = ++_inc;
 	public static var GAME_LEVEL_ENTITIES = ++_inc;
-	public static var GAME_LEVEL_CEILING = ++_inc;
 	public static var GAME_LEVEL_TOP = ++_inc;
 }
