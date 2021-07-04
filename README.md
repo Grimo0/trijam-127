@@ -1,6 +1,7 @@
 # About
 
-Base structure for my games forked from (https://github.com/deepnight/gameBase).
+This game was made for the [Trijam #127](https://itch.io/jam/trijam-127)
+It uses the same base structure as in all my games (https://github.com/grimo0/gameBase) which is a fork from @deepnight's one.
 The language is **Haxe** (https://haxe.org).
 Builds are done with **Hashlink** (https://hashlink.haxe.org), a virtual machine, working on all platforms. 
 And using **Heaps** (https://heaps.io), a 2D/3D Haxe library (*ie.* an Haxelib). All of those tools are free and open-source.
@@ -14,7 +15,6 @@ And using **Heaps** (https://heaps.io), a 2D/3D Haxe library (*ie.* an Haxelib).
 	- `haxelib git domkit https://github.com/HeapsIO/domkit.git` 
 	- `haxelib install redistHelper` for the redist packing tasks
 	- `haxelib install formatter` for the format src task
-	- `haxelib install ldtk-haxe-api` for the LDtk support
 - Install Java to use the texture packing task
 - Download it into your local repository or fork this project then clone yours 
 - Open the root folder with vscode
