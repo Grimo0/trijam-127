@@ -55,6 +55,5 @@ class Assets {
 		placeholder = dn.heaps.assets.Atlas.load("atlas/placeholders.atlas");
 		ui = dn.heaps.assets.Atlas.load("atlas/ui.atlas");
 		fx = dn.heaps.assets.Atlas.load("atlas/fx.atlas");
-		entities = dn.heaps.assets.Atlas.load("atlas/entities.atlas");
 	}
 }
