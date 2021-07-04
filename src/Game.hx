@@ -1,6 +1,5 @@
 import en.Entity;
 import dn.Process;
-import hxd.Key;
 
 class Game extends Process {
 	public static var ME : Game;
@@ -45,6 +44,19 @@ class Game extends Process {
 	var slowMos : Map<String, {id : String, t : Float, f : Float}> = new Map();
 
 	var flags : Map<String, Int> = new Map();
+
+	public var timerLen(default, set) : Float;
+	public function set_timerLen(t) {
+		timerLen = t;
+		timer = timerLen;
+		return timerLen;
+	}
+	public var timer(default, set) : Float;
+	public function set_timer(t) {
+		timer = t;
+		hud.updateTimer();
+		return timer;
+	}
 
 	public function new() {
 		super(Main.ME);
@@ -101,6 +113,9 @@ class Game extends Process {
 
 		level.init();
 
+		timerLen = 10;
+		tw.createS(timer, 0, TType.TLinear, timerLen);
+
 		resume();
 		Process.resizeAll();
 	}
@@ -108,13 +123,13 @@ class Game extends Process {
 	public function transition(event : String = null, ?onDone : Void->Void) {
 		locked = true;
 
-		Main.ME.tw.createS(root.alpha, 0, #if debug 0 #else 1 #end).onEnd = function() {
+		Main.ME.tw.createS(root.alpha, 0, #if debug 0 #else .3 #end).onEnd = function() {
 			if (onDone != null)
 				onDone();
 
 			startLevel();
 
-			Main.ME.tw.createS(root.alpha, 1, #if debug 0 #else 1 #end);
+			Main.ME.tw.createS(root.alpha, 1, #if debug 0 #else .3 #end);
 		}
 	}
 

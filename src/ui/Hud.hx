@@ -4,34 +4,30 @@ class Hud extends dn.Process {
 	public var game(get, never) : Game;
 	inline function get_game() return Game.ME;
 
-	var flow : h2d.Flow;
-	var invalidated = true;
+	public var timer : Bar;
 
 	public function new() {
 		super(Game.ME);
 
-		createRootInLayers(game.root, Const.MAIN_LAYER_UI);
-		root.filter = new h2d.filter.ColorMatrix(); // force pixel perfect rendering
+		createRootInLayers(game.root, Const.GAME_UI);
 
-		flow = new h2d.Flow(root);
+		timer = new Bar(game.pxWid, 30, 0xffffff, root);
+		timer.y = game.pxHei - timer.outerHeight;
+	}
+
+	public function updateTimer() {
+		timer.set(game.timer, game.timerLen);
+		timer.color = switch game.timer {
+			case t if (t < game.timerLen * 0.1): 0xad0000;
+			case t if (t < game.timerLen * 0.3): 0xd36c00;
+			case _ : 0x256c00;
+		};
 	}
 
 	override function onResize() {
 		super.onResize();
 		root.setScale(Const.UI_SCALE);
-	}
-
-	public inline function invalidate()
-		invalidated = true;
-
-	function render() {}
-
-	override function postUpdate() {
-		super.postUpdate();
-
-		if (invalidated) {
-			invalidated = false;
-			render();
-		}
+		
+		timer.y = game.pxHei - timer.outerHeight;
 	}
 }

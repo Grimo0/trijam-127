@@ -18,7 +18,6 @@ class MainMenu extends Process {
 		ca.setRightDeadZone(0.2);
 
 		createRootInLayers(Main.ME.root, Const.MAIN_LAYER_UI);
-		root.filter = new h2d.filter.ColorMatrix(); // force pixel perfect rendering
 
 		var bg = Assets.ui.getBitmap('menuBackground');
 		bg.setScale(1.04);

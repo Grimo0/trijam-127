@@ -29,7 +29,7 @@ class Const {
 		update_SCALE();
 		return MAX_CELLS_PER_WIDTH;
 	}
-	public static var MAX_CELLS_PER_HEIGHT(default, set) = 8;
+	public static var MAX_CELLS_PER_HEIGHT(default, set) = -1;
 	static inline function set_MAX_CELLS_PER_HEIGHT(s) {
 		MAX_CELLS_PER_HEIGHT = s;
 		update_SCALE();
@@ -67,6 +67,8 @@ class Const {
 	public static var MAIN_LAYER_UI = ++_inc;
 
 	public static var GAME_SCROLLER = _inc = 0;
+	public static var GAME_CURSOR = ++_inc;
+	public static var GAME_UI = ++_inc;
 	public static var GAME_DEBUG = ++_inc;
 	public static var GAME_CINEMATIC = ++_inc;
 

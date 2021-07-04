@@ -20,6 +20,7 @@ class Main extends dn.Process {
 
 		// Engine settings
 		hxd.Timer.wantedFPS = Const.FPS;
+		s.defaultSmooth = true;
 		engine.backgroundColor = 0xff << 24 | 0x000000;
 		#if (hl && !debug)
 		engine.fullScreen = true;
@@ -61,10 +62,10 @@ class Main extends dn.Process {
 
 		// Start
 		hxd.Timer.skip();
-		delayer.addF(startMainMenu, 1);
+		delayer.addF(startGame, 1);
 
 		#if debug
-		debug = true;
+		// debug = true;
 		#end
 	}
 
