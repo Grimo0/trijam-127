@@ -50,6 +50,7 @@ class Game extends Process {
 
 	var flags : Map<String, Int> = new Map();
 
+	var difficulty = 1;
 	public var id(default, null) : String;
 
 	public var timerLen(default, set) : Float;
@@ -64,6 +65,8 @@ class Game extends Process {
 		hud.updateTimer();
 		return timer;
 	}
+
+	public var hand : Hand;
 
 	public var musicChannel : Channel;
 
@@ -87,6 +90,32 @@ class Game extends Process {
 		level = new Level();
 		fx = new Fx();
 		hud = new ui.Hud();
+		
+		hand = new Hand();
+		root.addChildAt(hand, Const.GAME_CURSOR);
+
+		function onCursorMove(event : hxd.Event) {
+			if (isPaused()) return;
+			if (event.kind != EMove || !hand.canMove()) return;
+
+			var cursorSize = hand.getSize();
+			hand.x = event.relX - M.sign(hand.scaleX) * cursorSize.width / 6;
+			hand.y = event.relY - cursorSize.height / 3;
+			if (hand.scaleX < 0 && hand.x <  1.5 * cursorSize.width)
+				hand.scaleX = -hand.scaleX;
+			else if (hand.scaleX > 0 && hand.x > pxWid -  1.5 * cursorSize.width)
+				hand.scaleX = -hand.scaleX;
+		}
+		hxd.Window.getInstance().addEventTarget(onCursorMove);
+
+		// Hide Cursor
+		hxd.System.setCursor = (c) -> {
+			if (!hand.visible || ui.Modal.hasAny()) {
+				hxd.System.setNativeCursor(Default);
+			} else {
+				hxd.System.setNativeCursor(Hide);
+			}
+		};
 
 		root.alpha = 0;
 		startLevel();
@@ -158,6 +187,22 @@ class Game extends Process {
 			musicChannel.fadeTo(1, time);
 			Main.ME.tw.createS(root.alpha, 1, time);
 		}
+	}
+	
+	public function gameOver() {
+		locked = true;
+		// new ui.EndGameMenu(true);
+		delayer.addF(()-> transition('recipe${difficulty}'), 1);
+	}
+
+	public function success() {
+		locked = true;
+		pause();
+		Assets.musicWin.play().onEnd = () -> resume();
+		if (difficulty == 4) {
+			// new ui.EndGameMenu(true);
+		} else
+			delayer.addF(()-> transition('recipe${++difficulty}'), 1);
 	}
 
 	/** CDB file changed on disk**/

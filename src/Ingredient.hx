@@ -45,7 +45,10 @@ class Ingredient extends Interactive {
 		filter.enable = false;
 	}
 
-	override function onPush(e:Event) {
-		
+	override function onClick(e:Event) {
+		if (game.hand.holding != null) 
+			return;
+		game.hand.holding = this;
+		quantity--;
 	}
 }
