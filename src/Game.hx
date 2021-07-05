@@ -156,6 +156,8 @@ class Game extends Process {
 
 		level.init();
 
+		hand.holding = null;
+
 		var recipe = getRecipeData(this.id);
 		timerLen = recipe.timer;
 		tw.createS(timer, 0, TType.TLinear, timerLen).end(() -> gameOver(true));
@@ -214,6 +216,7 @@ class Game extends Process {
 		if (difficulty == Data.recipes.all.length) {
 			Assets.musicWin.play(.4);
 			new ui.EndGameMenu(false);
+			delayer.addF(()-> transition('recipe${difficulty = 0}'), 1);
 		} else {
 			Assets.musicWin.play(.4).onEnd = () -> resume();
 			delayer.addF(()-> transition('recipe${++difficulty}'), 1);
