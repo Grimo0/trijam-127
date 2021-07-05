@@ -18,6 +18,7 @@ class Assets {
 	public static var musicNormal : Sound = null;
 	public static var musicWeird : Sound = null;
 	public static var musicWin : Sound = null;
+	public static var musicLose : Sound = null;
 
 	static var initDone = false;
 
@@ -68,5 +69,6 @@ class Assets {
 		musicNormal = hxd.Res.music.Trijam127_normal;
 		musicWeird = hxd.Res.music.Trijam127_weird;
 		musicWin = hxd.Res.music.Trijam127_win;
+		musicLose = hxd.Res.music.Trijam127_lose;
 	}
 }

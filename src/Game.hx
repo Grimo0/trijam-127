@@ -191,6 +191,12 @@ class Game extends Process {
 	
 	public function gameOver() {
 		locked = true;
+		pause();
+		if (musicChannel != null) {
+			musicChannel.stop();
+			musicChannel = null;
+		}
+		Assets.musicLose.play().onEnd = () -> resume();
 		// new ui.EndGameMenu(true);
 		delayer.addF(()-> transition('recipe${difficulty}'), 1);
 	}
@@ -198,6 +204,10 @@ class Game extends Process {
 	public function success() {
 		locked = true;
 		pause();
+		if (musicChannel != null) {
+			musicChannel.stop();
+			musicChannel = null;
+		}
 		Assets.musicWin.play().onEnd = () -> resume();
 		if (difficulty == 4) {
 			// new ui.EndGameMenu(true);
