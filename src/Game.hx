@@ -155,13 +155,13 @@ class Game extends Process {
 
 		var recipe = getRecipeData(this.id);
 		timerLen = recipe.timer;
-		tw.createS(timer, 0, TType.TLinear, timerLen);
+		tw.createS(timer, 0, TType.TLinear, timerLen).end(() -> gameOver());
 
 		// Music
 		if (recipe.weird)
-			musicChannel = Assets.musicNormal.play(true);
-		else
 			musicChannel = Assets.musicWeird.play(true);
+		else
+			musicChannel = Assets.musicNormal.play(true);
 		musicChannel.volume = 0;
 
 		resume();
