@@ -43,7 +43,7 @@ class Ingredient extends Interactive {
 	}
 
 	override function onOver(e:Event) {
-		if (game.hand.holding != null) 
+		if (game.hand.holding != null && game.hand.holding != this) 
 			return;
 		filter.enable = true;
 	}
@@ -53,6 +53,12 @@ class Ingredient extends Interactive {
 	}
 
 	override function onClick(e:Event) {
+		if (game.hand.holding == this) {
+			game.hand.holding = null;
+			quantity++;
+			Assets.SLIB.drop(1.);
+			return;
+		}
 		if (game.hand.holding != null) 
 			return;
 		game.hand.holding = this;
