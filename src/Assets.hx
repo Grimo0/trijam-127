@@ -2,7 +2,7 @@ import hxd.res.Sound;
 import dn.heaps.slib.*;
 
 class Assets {
-	// public static var SLIB = dn.heaps.assets.SfxDirectory.load("sfx");
+	public static var SLIB = dn.heaps.assets.SfxDirectory.load("sfx");
 
 	public static var fontPixel : h2d.Font;
 	public static var fontTiny : h2d.Font;
