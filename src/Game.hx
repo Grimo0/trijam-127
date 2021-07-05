@@ -99,8 +99,8 @@ class Game extends Process {
 			if (event.kind != EMove || !hand.canMove()) return;
 
 			var cursorSize = hand.getSize();
-			hand.x = event.relX - M.sign(hand.scaleX) * cursorSize.width / 6;
-			hand.y = event.relY - cursorSize.height / 3;
+			hand.x = event.relX;
+			hand.y = event.relY;
 			if (hand.scaleX < 0 && hand.x <  1.5 * cursorSize.width)
 				hand.scaleX = -hand.scaleX;
 			else if (hand.scaleX > 0 && hand.x > pxWid -  1.5 * cursorSize.width)
@@ -118,7 +118,7 @@ class Game extends Process {
 		};
 
 		root.alpha = 0;
-		startLevel();
+		transition('recipe1');
 		tw.createS(root.alpha, 1, #if debug 0 #else 1 #end);
 	}
 
@@ -143,7 +143,7 @@ class Game extends Process {
 		return f != null ? f : 0;
 	}
 
-	function startLevel(?id = 'recipe1') {
+	function startLevel(id) {
 		locked = false;
 		started = false;
 
@@ -217,7 +217,7 @@ class Game extends Process {
 
 	/** CDB file changed on disk**/
 	public function onCdbReload() {
-		startLevel();
+		startLevel(id);
 	}
 
 	/** Window/app resize event **/
