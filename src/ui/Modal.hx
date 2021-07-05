@@ -57,7 +57,7 @@ class Modal extends ui.Window {
 	override function postUpdate() {
 		super.postUpdate();
 		mask.visible = modalIdx == 0;
-		win.alpha = modalIdx == COUNT - 1 ? 1 : 0.6;
+		root.alpha = modalIdx == COUNT - 1 ? 1 : 0.6;
 	}
 
 	override function update() {
