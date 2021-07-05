@@ -24,7 +24,7 @@ class Pot extends Interactive {
 		var success = true;
 		for (ingData in recipe.ingredients) {
 			if (ingData.quantity < list.get(ingData.kind)) {
-				game.gameOver();
+				game.gameOver(false);
 				return;
 			}
 			if (ingData.quantity > list.get(ingData.kind)) {

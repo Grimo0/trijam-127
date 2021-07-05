@@ -158,7 +158,7 @@ class Game extends Process {
 
 		var recipe = getRecipeData(this.id);
 		timerLen = recipe.timer;
-		tw.createS(timer, 0, TType.TLinear, timerLen).end(() -> gameOver());
+		tw.createS(timer, 0, TType.TLinear, timerLen).end(() -> gameOver(true));
 
 		// Music
 		if (recipe.weird)
@@ -187,20 +187,20 @@ class Game extends Process {
 
 			startLevel(id);
 
-			musicChannel.fadeTo(.5, time);
+			musicChannel.fadeTo(.3, time);
 			Main.ME.tw.createS(root.alpha, 1, time);
 		}
 	}
 	
-	public function gameOver() {
+	public function gameOver(timer : Bool) {
 		locked = true;
 		pause();
 		if (musicChannel != null) {
 			musicChannel.stop();
 			musicChannel = null;
 		}
-		Assets.musicLose.play().onEnd = () -> resume();
-		// new ui.EndGameMenu(true);
+		Assets.musicLose.play(.4);
+		new ui.EndGameMenu(true, timer);
 		delayer.addF(()-> transition('recipe${difficulty}'), 1);
 	}
 
@@ -211,11 +211,13 @@ class Game extends Process {
 			musicChannel.stop();
 			musicChannel = null;
 		}
-		Assets.musicWin.play(.5).onEnd = () -> resume();
-		if (difficulty == 4) {
-			// new ui.EndGameMenu(true);
-		} else
+		if (difficulty == Data.recipes.all.length) {
+			Assets.musicWin.play(.4);
+			new ui.EndGameMenu(false);
+		} else {
+			Assets.musicWin.play(.4).onEnd = () -> resume();
 			delayer.addF(()-> transition('recipe${++difficulty}'), 1);
+		}
 	}
 
 	/** CDB file changed on disk**/
