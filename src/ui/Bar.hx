@@ -80,7 +80,7 @@ class Bar extends h2d.Object {
 
 	inline function set_color(c) {
 		bar.color.setColor(Color.addAlphaF(c));
-		bg.color.setColor(Color.addAlphaF(Color.toBlack(c, 0.8)));
+		bg.color.setColor(Color.addAlphaF(Color.toBlack(c, 0.8), .8));
 		return color = c;
 	}
 
@@ -103,11 +103,11 @@ class Bar extends h2d.Object {
 		if (oldBar != null)
 			oldBar.setPosition(padding, padding);
 
-		bg.width = wid + padding * 2;
-		bar.width = wid;
+		bg.width = wid;
+		bar.width = wid - padding * 2;
 
-		bg.height = hei + padding * 2;
-		bar.height = hei;
+		bg.height = hei;
+		bar.height = hei - padding * 2;
 
 		renderBar();
 	}
