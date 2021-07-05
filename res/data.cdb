@@ -112,7 +112,7 @@
 						{
 							"x": 0.71,
 							"y": 0.25,
-							"kind": "PepperRed",
+							"kind": "PepperRedRot",
 							"quantity": 1
 						}
 					],
@@ -125,7 +125,7 @@
 						{
 							"x": 0.48,
 							"y": 0.07,
-							"kind": "Fish",
+							"kind": "FishRot",
 							"quantity": 1
 						},
 						{
@@ -137,7 +137,7 @@
 						{
 							"x": 0.71,
 							"y": 0.25,
-							"kind": "PepperRed",
+							"kind": "PepperRedRot",
 							"quantity": 2
 						}
 					],
@@ -150,19 +150,19 @@
 						{
 							"x": 0.48,
 							"y": 0.07,
-							"kind": "Fish",
+							"kind": "FishRot",
 							"quantity": 1
 						},
 						{
 							"x": 0.25,
 							"y": 0.25,
-							"kind": "Alga",
+							"kind": "AlgaRot",
 							"quantity": 1
 						},
 						{
 							"x": 0.71,
 							"y": 0.25,
-							"kind": "PepperRed",
+							"kind": "PepperRedRot",
 							"quantity": 1
 						}
 					],
@@ -175,19 +175,19 @@
 						{
 							"x": 0.48,
 							"y": 0.07,
-							"kind": "Fish",
+							"kind": "FishRot",
 							"quantity": 2
 						},
 						{
 							"x": 0.25,
 							"y": 0.25,
-							"kind": "Alga",
+							"kind": "AlgaRot",
 							"quantity": 3
 						},
 						{
 							"x": 0.71,
 							"y": 0.25,
-							"kind": "PepperRed",
+							"kind": "PepperRedRot",
 							"quantity": 1
 						}
 					],
@@ -200,19 +200,19 @@
 						{
 							"x": 0.48,
 							"y": 0.07,
-							"kind": "Fish",
+							"kind": "FishRot",
 							"quantity": 1
 						},
 						{
 							"x": 0.25,
 							"y": 0.25,
-							"kind": "Alga",
+							"kind": "AlgaRot",
 							"quantity": 4
 						},
 						{
 							"x": 0.71,
 							"y": 0.25,
-							"kind": "PepperRed",
+							"kind": "PepperRedRot",
 							"quantity": 1
 						}
 					],
