@@ -18,9 +18,9 @@ class Hud extends dn.Process {
 	public function updateTimer() {
 		timer.set(game.timer, game.timerLen);
 		timer.color = switch game.timer {
-			case t if (t < game.timerLen * 0.1): 0xad0000;
+			case t if (t < game.timerLen * 0.1): 0xc30000;
 			case t if (t < game.timerLen * 0.3): 0xd36c00;
-			case _ : 0x256c00;
+			case _ : 0x29863e;
 		};
 	}
 
