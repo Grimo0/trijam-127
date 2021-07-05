@@ -92,7 +92,7 @@ class Game extends Process {
 		hud = new ui.Hud();
 
 		var manager = hxd.snd.Manager.get();
-		manager.masterVolume = 0.7;
+		manager.masterVolume = 1;
 		
 		hand = new Hand();
 		root.addChildAt(hand, Const.GAME_CURSOR);
@@ -187,7 +187,7 @@ class Game extends Process {
 
 			startLevel(id);
 
-			musicChannel.fadeTo(1, time);
+			musicChannel.fadeTo(.5, time);
 			Main.ME.tw.createS(root.alpha, 1, time);
 		}
 	}
@@ -211,7 +211,7 @@ class Game extends Process {
 			musicChannel.stop();
 			musicChannel = null;
 		}
-		Assets.musicWin.play().onEnd = () -> resume();
+		Assets.musicWin.play(.5).onEnd = () -> resume();
 		if (difficulty == 4) {
 			// new ui.EndGameMenu(true);
 		} else

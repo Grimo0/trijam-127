@@ -39,19 +39,13 @@ class Level extends dn.Process {
 
 		var recipe = Game.getRecipeData(game.id);
 		
-		var bg = new HSprite(Assets.game, 'SceneBg', M.imin(game.difficulty - 1, Assets.game.countFrames('SceneBg')));
+		var bg = new HSprite(Assets.game, 'SceneBg', Std.int((game.difficulty - 1) * Assets.game.countFrames('SceneBg') / Data.recipes.all.length));
 		root.addChildAt(bg, Const.GAME_LEVEL_BG);
 
 		var textIngX = 110;
 		var textIngY = 145;
 
 		for (ingData in recipe.ingredients) {
-			if (ingData.quantity <= 0) continue;
-			var ing = new Ingredient(ingData.kind);
-			root.addChildAt(ing, Const.GAME_LEVEL_ENTITIES);
-			ing.x = ingData.x * game.pxWid;
-			ing.y = ingData.y * game.pxHei;
-
 			var txt = new h2d.Text(Assets.fontMedium);
 			root.addChildAt(txt, Const.GAME_LEVEL_ENTITIES);
 			txt.x = textIngX;
@@ -61,6 +55,15 @@ class Level extends dn.Process {
 			txt.alpha = .6;
 			textIngX += 3;
 			textIngY += 40;
+
+			if (ingData.quantity <= 0) {
+				continue;
+			}
+
+			var ing = new Ingredient(ingData.kind);
+			root.addChildAt(ing, Const.GAME_LEVEL_ENTITIES);
+			ing.x = ingData.x * game.pxWid;
+			ing.y = ingData.y * game.pxHei;
 		}
 
 		pot = new Pot();

@@ -21,16 +21,18 @@ class Pot extends Interactive {
 
 	public function checkRecipe() {
 		var recipe = Game.getRecipeData(game.id);
+		var success = true;
 		for (ingData in recipe.ingredients) {
 			if (ingData.quantity < list.get(ingData.kind)) {
 				game.gameOver();
 				return;
 			}
 			if (ingData.quantity > list.get(ingData.kind)) {
-				return;
+				success = false;
 			}
 		}
-		game.success();
+		if (success)
+			game.success();
 	}
 
 	override function onOver(e:Event) {
@@ -49,6 +51,8 @@ class Pot extends Interactive {
 		var q = list.get(game.hand.holding.id);
 		list.set(game.hand.holding.id, q == null ? 1 : q + 1);
 		game.hand.holding = null;
+		
+		Assets.SLIB.drop(1.);
 
 		checkRecipe();
 	}

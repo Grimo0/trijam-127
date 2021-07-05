@@ -11,7 +11,7 @@ class Hud extends dn.Process {
 
 		createRootInLayers(game.root, Const.GAME_UI);
 
-		timer = new Bar(game.pxWid, 15, 0xffffff, root);
+		timer = new Bar(game.pxWid, 12, 0xffffff, root);
 		timer.y = game.pxHei - timer.outerHeight;
 	}
 

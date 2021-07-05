@@ -10,7 +10,8 @@ class Hand extends h2d.Object {
 		hold.visible = !open.visible;
 		if (holding != null) {
 			ingredient = Assets.game.getBitmap(holding.content.groupName, holding.quantityMax - 1);
-			ingredient.x = -3 * ingredient.getSize().width / 2;
+			ingredient.x = -ingredient.tile.dx - ingredient.tile.width * 8 / 8;
+			ingredient.y = -30;
 			addChildAt(ingredient, 0);
 		} else if (ingredient != null) {
 			ingredient.remove();

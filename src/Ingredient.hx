@@ -57,5 +57,7 @@ class Ingredient extends Interactive {
 			return;
 		game.hand.holding = this;
 		quantity--;
+
+		Assets.SLIB.pick(1.);
 	}
 }
