@@ -17,6 +17,10 @@ class Pot extends Interactive {
 
 		filter = new h2d.filter.DropShadow(0, 0.785, 0x333333, 1., 4, 1, 1, true);
 		filter.enable = false;
+		
+		var recipe = Game.getRecipeData(game.id);
+		for (ingData in recipe.ingredients)
+			list.set(ingData.kind, 0);
 	}
 
 	public function checkRecipe() {
