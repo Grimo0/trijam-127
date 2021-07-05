@@ -3,14 +3,19 @@ import hxd.Event;
 class Ingredient extends Interactive {
 	var game(get, never) : Game; inline function get_game() return Game.ME;
 
-	var id : String;
-	var content : HSprite;
-	var quantityMax : Int;
-	var quantity(default, set) : Int;
+	public var id(default, null) : String;
+	public var content(default, null) : HSprite;
+	public var quantityMax(default, null) : Int;
+	public var quantity(default, set) : Int;
 	public function set_quantity(q : Int) {
 		if (q >= 0 && q <= quantityMax) {
 			quantity = q;
-			content.setFrame(quantityMax - quantity);
+			if (quantity == 0)
+				content.visible = false;
+			else {
+				content.visible = true;
+				content.setFrame(quantityMax - quantity);
+			}
 		}
 		return quantity;
 	}
@@ -38,6 +43,8 @@ class Ingredient extends Interactive {
 	}
 
 	override function onOver(e:Event) {
+		if (game.hand.holding != null) 
+			return;
 		filter.enable = true;
 	}
 

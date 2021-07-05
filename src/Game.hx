@@ -50,7 +50,7 @@ class Game extends Process {
 
 	var flags : Map<String, Int> = new Map();
 
-	var difficulty = 1;
+	public var difficulty(default, null) = 1;
 	public var id(default, null) : String;
 
 	public var timerLen(default, set) : Float;
@@ -90,6 +90,9 @@ class Game extends Process {
 		level = new Level();
 		fx = new Fx();
 		hud = new ui.Hud();
+
+		var manager = hxd.snd.Manager.get();
+		manager.masterVolume = 0.7;
 		
 		hand = new Hand();
 		root.addChildAt(hand, Const.GAME_CURSOR);

@@ -8,6 +8,8 @@ class Level extends dn.Process {
 	public var cHei(get, never) : Int; inline function get_cHei() return Std.int(pxHei / Const.GRID);
 	public var pxWid(get, never) : Int; inline function get_pxWid() return game.pxWid;
 	public var pxHei(get, never) : Int; inline function get_pxHei() return game.pxHei;
+	
+	public var pot : Pot;
 
 	public function new() {
 		super(game);
@@ -34,17 +36,37 @@ class Level extends dn.Process {
 	public function initLevel() {
 		game.scroller.add(root, Const.GAME_SCROLLER_LEVEL);
 		root.removeChildren();
-		
-		var bg = new HSprite(Assets.game, 'SceneBg');
-		root.addChildAt(bg, Const.GAME_LEVEL_BG);
 
 		var recipe = Game.getRecipeData(game.id);
+		
+		var bg = new HSprite(Assets.game, 'SceneBg', M.imin(game.difficulty - 1, Assets.game.countFrames('SceneBg')));
+		root.addChildAt(bg, Const.GAME_LEVEL_BG);
+
+		var textIngX = 110;
+		var textIngY = 145;
 
 		for (ingData in recipe.ingredients) {
+			if (ingData.quantity <= 0) continue;
 			var ing = new Ingredient(ingData.kind);
 			root.addChildAt(ing, Const.GAME_LEVEL_ENTITIES);
 			ing.x = ingData.x * game.pxWid;
 			ing.y = ingData.y * game.pxHei;
+
+			var txt = new h2d.Text(Assets.fontMedium);
+			root.addChildAt(txt, Const.GAME_LEVEL_ENTITIES);
+			txt.x = textIngX;
+			txt.y = textIngY;
+			txt.text = Std.string(ingData.quantity);
+			txt.textColor = 0x000000;
+			txt.alpha = .6;
+			textIngX += 3;
+			textIngY += 40;
 		}
+
+		pot = new Pot();
+		root.addChildAt(pot, Const.GAME_LEVEL_ENTITIES);
+		var potSize = pot.getSize();
+		pot.x = 0.65 * game.pxWid - potSize.width / 2;
+		pot.y = 0.75 * game.pxHei - potSize.height / 2;
 	}
 }
