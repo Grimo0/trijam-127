@@ -1,6 +1,9 @@
+import hxd.res.Sound;
 import dn.heaps.slib.*;
 
 class Assets {
+	// public static var SLIB = dn.heaps.assets.SfxDirectory.load("sfx");
+
 	public static var fontPixel : h2d.Font;
 	public static var fontTiny : h2d.Font;
 	public static var fontSmall : h2d.Font;
@@ -11,6 +14,10 @@ class Assets {
 	public static var ui : SpriteLib;
 	public static var fx : SpriteLib;
 	public static var game : SpriteLib;
+	
+	public static var musicNormal : Sound = null;
+	public static var musicWeird : Sound = null;
+	public static var musicWin : Sound = null;
 
 	static var initDone = false;
 
@@ -56,5 +63,10 @@ class Assets {
 		ui = dn.heaps.assets.Atlas.load("atlas/ui.atlas");
 		fx = dn.heaps.assets.Atlas.load("atlas/fx.atlas");
 		game = dn.heaps.assets.Atlas.load("atlas/game.atlas");
+		
+		// -- Music
+		musicNormal = hxd.Res.music.Trijam127_normal;
+		musicWeird = hxd.Res.music.Trijam127_weird;
+		musicWin = hxd.Res.music.Trijam127_win;
 	}
 }

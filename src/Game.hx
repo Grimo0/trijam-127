@@ -1,3 +1,4 @@
+import hxd.snd.Channel;
 import en.Entity;
 import dn.Process;
 
@@ -64,6 +65,8 @@ class Game extends Process {
 		return timer;
 	}
 
+	public var musicChannel : Channel;
+
 	public function new() {
 		super(Main.ME);
 		ME = this;
@@ -125,20 +128,35 @@ class Game extends Process {
 		timerLen = recipe.timer;
 		tw.createS(timer, 0, TType.TLinear, timerLen);
 
+		// Music
+		if (recipe.weird)
+			musicChannel = Assets.musicNormal.play(true);
+		else
+			musicChannel = Assets.musicWeird.play(true);
+		musicChannel.volume = 0;
+
 		resume();
 		Process.resizeAll();
 	}
 
-	public function transition(event : String = null, ?onDone : Void->Void) {
+	public function transition(id : String, event : String = null, ?onDone : Void->Void) {
 		locked = true;
+		var time = #if debug 0 #else .3 #end;
+		if (musicChannel != null) {
+			var ch = musicChannel;
+			musicChannel.fadeTo(0, time, () -> {
+				ch.stop();
+			});
+		}
 
-		Main.ME.tw.createS(root.alpha, 0, #if debug 0 #else .3 #end).onEnd = function() {
+		Main.ME.tw.createS(root.alpha, 0, time).onEnd = function() {
 			if (onDone != null)
 				onDone();
 
-			startLevel();
+			startLevel(id);
 
-			Main.ME.tw.createS(root.alpha, 1, #if debug 0 #else .3 #end);
+			musicChannel.fadeTo(1, time);
+			Main.ME.tw.createS(root.alpha, 1, time);
 		}
 	}
 
