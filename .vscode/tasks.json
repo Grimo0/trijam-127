@@ -54,7 +54,7 @@
 				"$haxe-trace"
 			],
 			"group": "build",
-			"command": "haxelib run redistHelper hl.dx.hxml hl.sdl.hxml -p stained-tablecloth",
+			"command": "haxelib run redistHelper hl.dx.hxml -p stained-tablecloth",
 			"detail": "Create a package in the redist folder."
 		},
 		{
