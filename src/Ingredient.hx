@@ -5,6 +5,15 @@ class Ingredient extends Interactive {
 
 	var id : String;
 	var content : HSprite;
+	var quantityMax : Int;
+	var quantity(default, set) : Int;
+	public function set_quantity(q : Int) {
+		if (q >= 0 && q <= quantityMax) {
+			quantity = q;
+			content.setFrame(quantityMax - quantity);
+		}
+		return quantity;
+	}
 
 	public function new(id : String) {
 		super(0, 0);
@@ -21,6 +30,8 @@ class Ingredient extends Interactive {
 		var size = getSize();
 		width = size.width;
 		height = size.height;
+
+		quantity = quantityMax = content.totalFrames();
 
 		filter = new h2d.filter.DropShadow(0, 0.785, 0x333333, 1., 4, 1, 1, true);
 		filter.enable = false;
