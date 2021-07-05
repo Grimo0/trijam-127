@@ -29,7 +29,7 @@
 							"x": 0.48,
 							"y": 0.07,
 							"kind": "Fish",
-							"quantity": 1
+							"quantity": 0
 						},
 						{
 							"x": 0.25,
@@ -53,22 +53,22 @@
 							"x": 0.48,
 							"y": 0.07,
 							"kind": "Fish",
-							"quantity": 0
+							"quantity": 1
 						},
 						{
 							"x": 0.25,
 							"y": 0.25,
 							"kind": "Alga",
-							"quantity": 0
+							"quantity": 2
 						},
 						{
 							"x": 0.71,
 							"y": 0.25,
 							"kind": "PepperRed",
-							"quantity": 0
+							"quantity": 1
 						}
 					],
-					"timer": 25
+					"timer": 28
 				},
 				{
 					"id": "recipe3",
@@ -77,23 +77,22 @@
 							"x": 0.48,
 							"y": 0.07,
 							"kind": "Fish",
-							"quantity": 0
+							"quantity": 2
 						},
 						{
 							"x": 0.25,
 							"y": 0.25,
 							"kind": "Alga",
-							"quantity": 0
+							"quantity": 1
 						},
 						{
 							"x": 0.71,
 							"y": 0.25,
 							"kind": "PepperRed",
-							"quantity": 0
+							"quantity": 1
 						}
 					],
-					"timer": 20,
-					"weird": true
+					"timer": 25
 				},
 				{
 					"id": "recipe4",
@@ -102,19 +101,119 @@
 							"x": 0.48,
 							"y": 0.07,
 							"kind": "Fish",
-							"quantity": 0
+							"quantity": 2
 						},
 						{
 							"x": 0.25,
 							"y": 0.25,
 							"kind": "Alga",
-							"quantity": 0
+							"quantity": 2
 						},
 						{
 							"x": 0.71,
 							"y": 0.25,
 							"kind": "PepperRed",
-							"quantity": 0
+							"quantity": 1
+						}
+					],
+					"timer": 23,
+					"weird": true
+				},
+				{
+					"id": "recipe5",
+					"ingredients": [
+						{
+							"x": 0.48,
+							"y": 0.07,
+							"kind": "Fish",
+							"quantity": 1
+						},
+						{
+							"x": 0.25,
+							"y": 0.25,
+							"kind": "Alga",
+							"quantity": 1
+						},
+						{
+							"x": 0.71,
+							"y": 0.25,
+							"kind": "PepperRed",
+							"quantity": 2
+						}
+					],
+					"timer": 20,
+					"weird": true
+				},
+				{
+					"id": "recipe6",
+					"ingredients": [
+						{
+							"x": 0.48,
+							"y": 0.07,
+							"kind": "Fish",
+							"quantity": 1
+						},
+						{
+							"x": 0.25,
+							"y": 0.25,
+							"kind": "Alga",
+							"quantity": 1
+						},
+						{
+							"x": 0.71,
+							"y": 0.25,
+							"kind": "PepperRed",
+							"quantity": 1
+						}
+					],
+					"timer": 18,
+					"weird": true
+				},
+				{
+					"id": "recipe7",
+					"ingredients": [
+						{
+							"x": 0.48,
+							"y": 0.07,
+							"kind": "Fish",
+							"quantity": 2
+						},
+						{
+							"x": 0.25,
+							"y": 0.25,
+							"kind": "Alga",
+							"quantity": 3
+						},
+						{
+							"x": 0.71,
+							"y": 0.25,
+							"kind": "PepperRed",
+							"quantity": 1
+						}
+					],
+					"timer": 15,
+					"weird": true
+				},
+				{
+					"id": "recipe8",
+					"ingredients": [
+						{
+							"x": 0.48,
+							"y": 0.07,
+							"kind": "Fish",
+							"quantity": 1
+						},
+						{
+							"x": 0.25,
+							"y": 0.25,
+							"kind": "Alga",
+							"quantity": 4
+						},
+						{
+							"x": 0.71,
+							"y": 0.25,
+							"kind": "PepperRed",
+							"quantity": 1
 						}
 					],
 					"timer": 15,
