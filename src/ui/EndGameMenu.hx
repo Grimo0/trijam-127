@@ -27,7 +27,7 @@ class EndGameMenu extends Modal {
 			else
 				txt.text = Lang.t._('You have to follow the recipe !\n\nClick to try again.');
 		} else {
-			txt.text = Lang.t._('Well done, guests were ... delighted.\n\nThanks so much for playing !\nClick to start again.');
+			txt.text = Lang.t._('Well done, guests were ... delighted.\n\nThanks so much for playing !\n\nClick to start again.');
 		}
 
 		var i = new h2d.Interactive(game.pxWid, game.pxHei, root);

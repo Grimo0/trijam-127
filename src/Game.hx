@@ -31,10 +31,13 @@ class Game extends Process {
 
 	public var locked(default, set) = false;
 	public function set_locked(l) {
-		if (l)
+		if (l) {
 			ca.lock();
-		else
+			Main.ME.controller.lock();
+		} else {
 			ca.unlock();
+			Main.ME.controller.unlock();
+		}
 		return locked = l;
 	}
 	public var started(default, null) = false;
@@ -216,7 +219,7 @@ class Game extends Process {
 		if (difficulty == Data.recipes.all.length) {
 			Assets.musicWin.play(.4);
 			new ui.EndGameMenu(false);
-			delayer.addF(()-> transition('recipe${difficulty = 0}'), 1);
+			delayer.addF(()-> transition('recipe${difficulty = 1}'), 1);
 		} else {
 			Assets.musicWin.play(.4).onEnd = () -> resume();
 			delayer.addF(()-> transition('recipe${++difficulty}'), 1);
